@@ -43,7 +43,7 @@ if (isset($_POST['register'])) {
 	if ($result) {
 		$_SESSION['success'] = "User registered successfully." . print_r($result, true);
 	} else {
-		$_SESSION['error'] = "Error: Failed to register user. User may already exist.";
+		$_SESSION['error'] = "Error: Failed to register user. User may already exist." . pg_last_error($con);
 	}
 }
 

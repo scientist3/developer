@@ -10,10 +10,18 @@ session_start();
 </head>
 
 <body>
-	<div class="form-div messages">
+	<div class="form-div messages <?php echo !(isset($_SESSION['connect']) || isset($_SESSION['error']) || isset($_SESSION['success'])) ? 'hide' : ''; ?>">
+		<?php // print_r($_SESSION); 
+		?>
 		<?php isset($_SESSION['connect']) ? print('<div class="error">' . $_SESSION['connect'] . '</div>') : ''; ?>
 		<?php isset($_SESSION['error']) ? print('<div class="error">' . $_SESSION['error'] . '</div>') : ''; ?>
 		<?php isset($_SESSION['success']) ? print('<div class="success">' . $_SESSION['success'] . '</div>') : ''; ?>
+		<?php session_unset(); // Clear session messages after displaying them 
+		?>
+		<?php if (isset($_SESSION['user'])) { ?>
+			<div class="success">Welcome, <?php echo htmlspecialchars($_SESSION['user']); ?>!</div>
+			<a href="./cases.php">View Cases</a> | <a href="./logout.php">Logout</a>
+		<?php } ?>
 	</div>
 	<?php if (array_key_exists('login', $_GET)) { ?>
 		<form name="login" method="post" action="./processLogin.php">
