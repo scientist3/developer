@@ -6,47 +6,7 @@ session_start();
 
 <head>
 	<title>Login form</title>
-	<style>
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-
-		.form-div {
-			width: 300px;
-			margin: 30px auto;
-			padding: 20px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-			background-color: #f9f9f9;
-		}
-
-		.messages {
-			margin-bottom: 10px;
-			padding: 10px;
-			border-radius: 5px;
-			background-color: #f0f0f0;
-		}
-
-		.submit-btn {
-			width: 100%;
-			padding: 10px;
-			background-color: #28a745;
-			color: white;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		.input {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 10px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-		}
-	</style>
+	<link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
