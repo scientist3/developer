@@ -8,7 +8,7 @@ $port = '5432'; // default PostgreSQL port
 $_SESSION['connect'] = '';
 // phpinfo();
 $con = pg_connect("host=$host dbname=$db user=$user password=$pass");
-var_dump($con);
+// var_dump($con);
 // $_SESSION['con'] = $con;
 if (!$con) {
 	$_SESSION['connect'] = "Connection failed: " . pg_last_error();
