@@ -10,13 +10,14 @@ session_start();
 </head>
 
 <body>
+	<div class="form-div messages">
+		<?php isset($_SESSION['connect']) ? print('<div class="error">' . $_SESSION['connect'] . '</div>') : ''; ?>
+		<?php isset($_SESSION['error']) ? print('<div class="error">' . $_SESSION['error'] . '</div>') : ''; ?>
+		<?php isset($_SESSION['success']) ? print('<div class="success">' . $_SESSION['success'] . '</div>') : ''; ?>
+	</div>
 	<?php if (array_key_exists('login', $_GET)) { ?>
 		<form name="login" method="post" action="./processLogin.php">
-			<!-- <?php var_dump($_SESSION); ?> -->
-			<div class="form-div messages">
-				<?php isset($_SESSION['errors']) ? print('<div class="error">' . $_SESSION['errors'] . '</div>') : ''; ?>
-				<?php isset($_SESSION['success']) ? print('<div class="success">' . $_SESSION['success'] . '</div>') : ''; ?>
-			</div>
+
 			<div class="form-div">
 				<div class="messages">Login</div>
 				<label for="username"> Username </label>
