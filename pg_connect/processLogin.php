@@ -15,10 +15,11 @@ if (isset($_POST['login'])) {
 	$username = $post['username'];
 	$password = $post['password'];
 
-	$result = pg_query_params($conn, "SELECT * FROM users WHERE username = $1", [$username]);
+	$result = pg_query_params($conn, "SELECT * FROM users WHERE username = $1 and password= $2", [$username, $password]);
 	$user = pg_fetch_assoc($result);
 
-	if ($user && password_verify($password, $user['password'])) {
+	if ($user) {
+		// if ($user && password_verify($password, $user['password'])) {
 		$_SESSION['success'] = "Login successful!";
 	} else {
 		$_SESSION['error'] = "Invalid username or password.";
@@ -27,6 +28,8 @@ if (isset($_POST['login'])) {
 // if request is for registration
 
 if (isset($_POST['register'])) {
+	// echo "hi";
+	// die;
 	$username = $_POST['data']['username'];
 	$password = $_POST['data']['password'];
 
@@ -36,13 +39,15 @@ if (isset($_POST['register'])) {
 	// Insert user
 	$result = pg_query_params(
 		$conn,
-		"INSERT INTO users (username, password) VALUES ($1, $2)",
+		"INSERT INTO users (id, username, password) VALUES (2,$1, $2)",
 		[$username, $hashedPassword]
 	);
 
 	if ($result) {
+		echo "User registered successfully.";
 		$_SESSION['success'] = "User registered successfully." . print_r($result, true);
 	} else {
+		echo "Error: Failed to register user. User may already exist." . pg_last_error($con);
 		$_SESSION['error'] = "Error: Failed to register user. User may already exist." . pg_last_error($con);
 	}
 }

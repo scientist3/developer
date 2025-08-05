@@ -34,6 +34,7 @@ if (!$cases) {
 
 <body>
 	<div>
+		<?php print_r($cases); ?>
 		<table class="cases-table">
 			<thead>
 				<tr>
